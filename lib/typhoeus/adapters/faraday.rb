@@ -74,9 +74,10 @@ module Faraday # :nodoc:
 
         req = ::Typhoeus::Request.new(
           env[:url].to_s,
-          :method  => env[:method],
-          :body    => env[:body],
-          :headers => env[:request_headers]
+          method: env[:method],
+          body: env[:body],
+          headers: env[:request_headers].merge('Accept-Encoding' => 'gzip'),
+          accept_encoding: 'gzip'
         )
 
         configure_ssl     req, env
